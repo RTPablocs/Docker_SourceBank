@@ -1,0 +1,11 @@
+FROM python:latest
+RUN apt-get update && apt-get install -y git
+RUN rm -rf SourceBank_Backend
+RUN git clone https://github.com/RTPablocs/SourceBank_Backend
+WORKDIR /SourceBank_Backend
+RUN python -m venv .venv
+RUN chmod +x .venv/bin/activate
+RUN . .venv/bin/activate
+RUN pip install -r requirements.txt
+
+CMD python manage.py runserver

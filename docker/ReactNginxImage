@@ -1,4 +1,4 @@
-FROM node:14-alpine
+FROM node:14-alpine AS builder
 RUN apk add --no-cache git
 RUN rm -rf SourceBank_Backend
 RUN git clone http://github.com/RTPablocs/SourceBank_Frontend
@@ -6,6 +6,9 @@ WORKDIR /SourceBank_Frontend
 COPY .env /
 RUN cat /.env
 RUN npm install
-RUN npm install -g serve 
 RUN npm run build
-CMD serve -s build -p 80
+
+FROM nginx:latest AS server
+COPY --from=builder /SourceBank_Frontend/build /usr/share/nginx/html
+
+CMD ["nginx", "-g", "daemon off;"]

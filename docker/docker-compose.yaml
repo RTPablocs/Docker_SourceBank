@@ -16,5 +16,7 @@ services:
       - multi_network
     ports:
       - "80:80"
+  redis:
+    image: redis
 networks:
   multi_network:

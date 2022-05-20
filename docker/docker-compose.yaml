@@ -7,7 +7,7 @@ services:
     networks:
       - multi_network
     ports:
-      - "6000:8000"
+      - "50:8000"
   react:
     build:
       context: .

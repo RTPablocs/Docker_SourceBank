@@ -6,6 +6,6 @@ WORKDIR /SourceBank_Frontend
 COPY .env /
 RUN cat /.env
 RUN npm install
-RUN npm install -g serve
+RUN npm install -g serve 
 RUN npm run build
-CMD serve -s build
+CMD serve -s build -p 80
